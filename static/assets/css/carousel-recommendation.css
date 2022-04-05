@@ -1,0 +1,159 @@
+.carousel-recommendation{
+	position: relative;
+	width: 100%;
+	height: 260px;
+}
+
+
+.carousel-recommendation .mask{
+	position: relative;
+	width: 100%;
+	height: 260px;
+	overflow: hidden;
+}
+
+.carousel-recommendation .row{
+	position: relative;
+	width: 100%;
+	height: 260px;
+	overflow: hidden;
+}
+
+.carousel-recommendation a{
+	text-decoration: none !important
+}
+
+.carousel-recommendation img{
+	width: 141px;
+	height: auto;
+}
+
+/* Controls */
+	.carousel-recommendation .control-btn{
+		position: absolute;
+		top: 54px;
+
+		width: 72px;
+		height: 72px;
+		box-sizing: border-box;
+		background-color: rgba(0,0,0,0.2);
+		border: none;
+		border-radius: 72px;
+		text-align: center;
+		font-size: 34px;
+		line-height: 34px; 
+		color: #fff;
+		z-index: 100;
+		transition: all 0.5s;
+		-webkit-transition: all 0.5s;
+	}
+	.carousel-recommendation .control-btn:hover{
+		cursor: pointer;
+		background-color: rgba(0,0,0,0.3);
+	}
+
+	.carousel-recommendation .control-btn i{
+		display: block;
+		
+	}
+
+	.carousel-recommendation .control-btn.btn-left{ left: 0px; padding: 20px; }
+	.carousel-recommendation .control-btn.btn-right{ left: auto; right: 0px; padding: 20px; }
+
+	@media (min-width: 1150px) {
+		.carousel-recommendation .control-btn.btn-left{ left: -72px; }
+		.carousel-recommendation .control-btn.btn-right{ left: auto; right: -72px; }
+	}
+/* Controls */
+
+/* Insides */
+	.carousel-recommendation .row .col-md-2{
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 10;
+		transition: all 0.5s;
+		-webkit-transition: all 0.5s;
+
+		transform: translateX(-100%);
+		-webkit-transform: translateX(-100%);
+
+		text-align: center;
+		border-collapse: collapse;
+		box-sizing: border-box;
+		width: 16.6%;
+		height: 260px;
+	}
+/* Insides */
+
+
+@media (max-width: 767px) {
+	.carousel-recommendation{
+		position: relative;
+		width: 100%;
+		height: 240px;
+	}
+
+	.carousel-recommendation .mask{
+		position: relative;
+		width: 100%;
+		height: 240px;
+		overflow: hidden;
+	}
+
+	.carousel-recommendation .row{
+		position: relative;
+		width: 100%;
+		height: 240px;
+		overflow: hidden;
+		margin: 0px;
+	}
+
+	.carousel-recommendation img{
+		width: 180px;
+		height: auto;
+	}
+
+	/* Insides */
+		.carousel-recommendation .row .col-md-2{
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			transition: all 0.5s;
+			-webkit-transition: all 0.5s;
+
+			transform: translateX(-100%);
+			-webkit-transform: translateX(-100%);
+
+			text-align: center;
+			border-collapse: collapse;
+			box-sizing: border-box;
+			width: 100%;
+			height: 260px;
+		}
+	/* Insides */
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+	/* Insides */
+		.carousel-recommendation .row .col-md-2{
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			transition: all 0.5s;
+			-webkit-transition: all 0.5s;
+
+			transform: translateX(-100%);
+			-webkit-transform: translateX(-100%);
+
+			text-align: center;
+			border-collapse: collapse;
+			box-sizing: border-box;
+			width: 25%;
+			height: 260px;
+		}
+	/* Insides */
+}

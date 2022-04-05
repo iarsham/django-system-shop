@@ -1,0 +1,280 @@
+.carousel{
+	position: relative;
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+/* Controls */
+	.carousel .btn-control{
+		position: absolute;
+		top: calc(50% - 15px);
+		left: auto;
+		right: 20px;
+
+		display: block;
+	    width: 20px;
+	    height: 30px;
+	    background-color: transparent;
+	    cursor: pointer;
+
+		z-index: 200;
+	}
+
+	.carousel .btn-control:before{
+	    content: '';
+	    position: absolute;
+	    width: 50%;
+	    height: 50%;
+	    background-color: #333;
+
+	    right: 30%;
+	    top: 0;
+
+		-webkit-transition: all 0.3s ease;
+	    -moz-transition: all 0.3s ease;
+	    -ms-transition: all 0.3s ease;
+	    -o-transition: all 0.3s ease;
+	    transition: all 0.3s ease;
+
+	    -webkit-transform: skew(35deg, 0deg);
+	    -ms-transform: skew(35deg, 0deg);
+	    transform: skew(35deg, 0deg);
+	}
+
+	.carousel .btn-control:after{
+		content: '';
+	    position: absolute;
+	    width: 50%;
+	    height: 50%;
+	    background-color: #333;
+
+	    right: 30%;
+    	top: 50%;
+
+		-webkit-transition: all 0.3s ease;
+	    -moz-transition: all 0.3s ease;
+	    -ms-transition: all 0.3s ease;
+	    -o-transition: all 0.3s ease;
+	    transition: all 0.3s ease;
+
+	    -webkit-transform: skew(-35deg, 0deg);
+	    -ms-transform: skew(-35deg, 0deg);
+	    transform: skew(-35deg, 0deg);
+	    
+	}
+
+	.carousel .btn-control:hover:before{ opacity: 1; }
+	.carousel .btn-control:hover:after{ opacity: 1;  }
+/* Controls */
+
+/* Markers */
+	.carousel > .markers{
+		position: absolute;
+		top: auto;
+		bottom: 20px;
+		left: 0;
+		width: 100%;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		text-align: center;
+
+		z-index: 300;
+	}
+
+	.carousel > .markers > li{
+		display: inline-block;
+		width: 50px;
+		height: 50px;
+		border-radius: 50px;
+		border: 1px solid #888;
+		box-shadow: 0px 0px 3px rgba(31,31,31,0.4);
+		box-sizing: border-box;
+		margin: 0 7px;
+		padding: 0;
+		overflow: hidden;
+		cursor: pointer;
+
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		transition: all 0.3s ease;
+
+		opacity: 0.3;
+	}
+	.carousel > .markers > li:hover,
+	.carousel > .markers > li.active{
+		opacity: 1;
+	}
+
+	.carousel > .markers > li > img{
+		width: auto;
+		height: 100%;
+	}
+/* Markers */
+
+/* Items */
+	.carousel > .items{
+		position: relative;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	.carousel > .items > .item{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+		z-index: 0;
+
+		-webkit-animation: fadeOutItem 0.5s ease-in-out forwards;
+		-moz-animation:    fadeOutItem 0.5s ease-in-out forwards;
+		-o-animation:      fadeOutItem 0.5s ease-in-out forwards;
+		animation:         fadeOutItem 0.5s ease-in-out forwards;
+	}
+
+	@-webkit-keyframes fadeOutItem {
+	  from   { -webkit-transform: scale(1,1); }
+	  to { -webkit-transform: scale(0,0); }
+	}
+	@-moz-keyframes fadeOutItem {
+	  from   { -moz-transform: scale(1,1); }
+	  to { -moz-transform: scale(0,0); }
+	}
+	@-o-keyframes fadeOutItem {
+	  from   { -o-transform: scale(1,1); }
+	  to { -o-transform: scale(0,0); }
+	}
+	@keyframes fadeOutItem {
+	  from   { transform: scale(1,1); }
+	  to { transform: scale(0,0); }
+	}
+
+
+	.carousel > .items > .item.active{
+		position: relative;
+		z-index: 100;
+	
+		-webkit-animation: fadeInItem 0.5s ease-in-out forwards;
+		-moz-animation:    fadeInItem 0.5s ease-in-out forwards;
+		-o-animation:      fadeInItem 0.5s ease-in-out forwards;
+		animation:         fadeInItem 0.5s ease-in-out forwards;
+	}
+
+	@-webkit-keyframes fadeInItem {
+	  from   { -webkit-transform: scale(5,5); opacity: 0; }
+	  to { -webkit-transform: scale(1,1); opacity: 1; }
+	}
+	@-moz-keyframes fadeInItem {
+	  from   { -moz-transform: scale(5,5); opacity: 0; }
+	  to { -moz-transform: scale(1,1); opacity: 1; }
+	}
+	@-o-keyframes fadeInItem {
+	  from   { -o-transform: scale(5,5); opacity: 0; }
+	  to { -o-transform: scale(1,1); opacity: 1; }
+	}
+	@keyframes fadeInItem {
+	  from   { transform: scale(5,5); opacity: 0; }
+	  to { transform: scale(1,1); opacity: 1; }
+	}
+/* Items */
+
+/* Content */
+	.carousel > .items > .item > img.background {
+		position: relative;
+		width: 100%;
+		height: auto;
+		min-height: 500px;
+	}
+
+
+	.carousel > .items > .item > .content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+
+	.carousel > .items > .item > .content > .outside-content{
+		display: table;
+		width: 100%;
+		height: 100%;
+	}
+
+
+	.carousel > .items > .item > .content > .outside-content > .inside-content{
+		display: table-cell;
+		vertical-align: middle;
+		width: 100%;
+		height: auto;
+	}
+
+	.carousel > .items > .item > .content > .outside-content > .inside-content .align-center{
+		text-align: center !important;
+	}
+
+	.carousel > .items > .item > .content > .outside-content > .inside-content .align-right{
+		text-align: right !important;
+	}
+
+	.carousel > .items > .item > .content > .outside-content > .inside-content .align-left{
+		text-align: left !important;
+	}
+
+	.carousel > .items > .item img{
+		width: 100%;
+		height: auto;
+	}
+/* Content */
+
+
+@media (max-width: 767px) {
+	.carousel.product{
+		position: relative;
+		width: 100%;
+		height: 60%;
+		height: 60vh;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+}
+
+@media (max-device-width: 767px) and (orientation: landscape) {
+	.carousel.product{
+		position: relative;
+		width: 100%;
+		height: 100%;
+		height: 100vh;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.carousel.product{
+		position: relative;
+		width: 100%;
+		height: 350px;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+}
