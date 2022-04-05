@@ -1,0 +1,199 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <hr class="offset-lg">
+
+    <div class="product">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 col-md-7">
+                    <div class="carousel product" data-count="5" data-current="1">
+                        <!-- <button class="btn btn-control"></button> -->
+
+                        <div class="items">
+                            <div class="item active" data-marker="1">
+                                <img src="{{ project_detail.product_image.url }}" alt="ChromeBook 11"/>
+                            </div>
+                            {% if project_detail.product_image2 and project_detail.product_image3 %}
+                                <div class="item" data-marker="2">
+                                    <img src="{{ project_detail.product_image2.url }}" alt="ChromeBook 11"/>
+                                </div>
+                                <div class="item" data-marker="3">
+                                    <img src="{{ project_detail.product_image3.url }}" alt="ChromeBook 11"/>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <ul class="markers">
+                            <li data-marker="1" class="active"><img src="{{ project_detail.product_image.url }}"
+                                                                    alt="Background"/>
+                            </li>
+                            {% if project_detail.product_image2 and project_detail.product_image3 %}
+                                <li data-marker="2"><img src="{{ project_detail.product_image2.url }}"
+                                                         alt="Background"/></li>
+                                <li data-marker="3"><img src="{{ project_detail.product_image3.url }}"
+                                                         alt="Background"/></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-5 col-md-5">
+                    <img src="{{ project_detail.brand_logo.url }}" alt="HP" class="brand hidden-xs"/>
+
+                    <h1>{{ project_detail.product_name }}</h1>
+
+                    <p> &middot; {{ project_detail.os }}</p>
+                    <p> &middot; {{ project_detail.processor }}</p>
+                    <p> &middot; {{ project_detail.graphics }}</p>
+
+                    <p class="price">${{ project_detail.price }}</p>
+                    {% if project_detail.discount %}
+                        <p class="price through">${{ project_detail.discount }}</p>
+                    {% endif %}
+                    <br><br>
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'add-cart' project_detail.id %}" method="post"> {% csrf_token %}
+                            <button class="btn btn-primary btn-rounded"><i class="ion-bag"></i> Add to cart</button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'login' %}">
+                            <button class="btn btn-primary btn-rounded"><i class="ion-bag"></i> Add to cart</button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <div class="col-sm-7">
+                    <h1>{{ project_detail.product_name }}</h1>
+                    <br>
+
+                    <p>
+                        {{ project_detail.description }}
+                        <br>
+
+                    <h2>Product specifications</h2>
+                    <br>
+                    {% if project_detail.product_name %}
+                        <div class="row specification">
+                            <div class="col-sm-6"><label>Operating system</label></div>
+                            <div class="col-sm-6"><p>{{ project_detail.product_name }}</p></div>
+                        </div>
+                    {% endif %}
+                    {% if project_detail.processor %}
+                        <div class="row specification">
+                            <div class="col-sm-6"><label>Processor</label></div>
+                            <div class="col-sm-6"><p>{{ project_detail.processor }}</p></div>
+                        </div>
+                    {% endif %}
+                    {% if project_detail.processor_technology %}
+                        <div class="row specification">
+                            <div class="col-sm-6"><label>Processor technology</label></div>
+                            <div class="col-sm-6"><p>{{ project_detail.processor_technology }}</p></div>
+                        </div>
+                    {% endif %}
+                    {% if project_detail.graphics %}
+                        <div class="row specification">
+                            <div class="col-sm-6"><label>Graphics</label></div>
+                            <div class="col-sm-6"><p>{{ project_detail.graphics }}</p></div>
+                        </div>
+                    {% endif %}
+                    {% if project_detail.memory %}
+                        <div class="row specification">
+                            <div class="col-sm-6"><label>Memory</label></div>
+                            <div class="col-sm-6"><p>{{ project_detail.memory }}</p></div>
+                        </div>
+                    {% endif %}
+                    {% if project_detail.hard_drive %}
+                        <div class="row specification">
+                            <div class="col-sm-6"><label>Hard drive</label></div>
+                            <div class="col-sm-6"><p>{{ project_detail.hard_drive }}</p></div>
+                        </div>
+                    {% endif %}
+                    {% if project_detail.wireless %}
+                        <div class="row specification">
+                            <div class="col-sm-6"><label>Wireless</label></div>
+                            <div class="col-sm-6"><p>{{ project_detail.wireless }}</p></div>
+                        </div>
+                    {% endif %}
+                    {% if project_detail.power_supply %}
+                        <div class="row specification">
+                            <div class="col-sm-6"><label>Power supply</label></div>
+                            <div class="col-sm-6"><p>{{ project_detail.power_supply }}</p></div>
+                        </div>
+                    {% endif %}
+                    {% if project_detail.battery %}
+                        <div class="row specification">
+                            <div class="col-sm-6"><label>Battery</label></div>
+                            <div class="col-sm-6"><p>{{ project_detail.battery }}</p></div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-5">
+                    <div class="comments">
+                        <h2 class="h3">What do you think?</h2>
+                        <br>
+                        <div class="wrapper">
+                            <div class="content">
+                                {% for comment in product_comments %}
+                                    {% if comment.reply_product.id == project_detail.id %}
+                                        <h3>{{ comment }}</h3>
+                                        <label>{{ comment.date_entry }}</label>
+                                        <p>{{ comment.text_comment }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <br>
+
+                        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#Modal-Comment"><i
+                                class="ion-chatbox-working"></i> Add comment
+                        </button>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="modal fade" id="Modal-Comment" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header align-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true"><i
+                            class="ion-android-close"></i></span></button>
+                    <h1 class="h4 modal-title">Add your comment</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+
+                        <form class="join" action="{% url 'detail-products' project_detail.pk %}"
+                              method="post"> {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                <textarea name="comment" placeholder="Type here" required="" class="form-control"
+                                          rows="5"></textarea>
+                                    <br>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="align-center">
+                                        <br>
+                                        <button type="submit" class="btn btn-primary btn-sm"><i
+                                                class="ion-android-send"></i> Send
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"><i
+                                                class="ion-android-share"></i> No, thanks
+                                        </button>
+                                        <br><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

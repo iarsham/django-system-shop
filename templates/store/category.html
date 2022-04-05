@@ -1,0 +1,231 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+    <hr class="offset-lg">
+
+    <div class="container tags">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                <i class="ion-arrow-down-b"></i> Sorting by ?
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="?sort=low"> <i class="ion-arrow-down-c"></i> Price [Low-High]</a></li>
+                <li><a href="?sort=high"> <i class="ion-arrow-up-c"></i> Price [High-Low]</a></li>
+                <li><a href="?sort=new"> <i class="ion-arrow-up-c"></i> The Newest</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <!-- Filter -->
+            <form action="">
+                <div class="col-sm-3 filter">
+                    <div class="item">
+                        <div class="title">
+                            <a href="#" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i>
+                                Open</a>
+                            <a href="{% url 'category' %}" data-action="clear"> <i class="ion-ios-trash-outline"></i>
+                                Clear</a>
+                            <h1 class="h4">Type</h1>
+                        </div>
+                        <div class="controls">
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Laptop">Laptop</div>
+                                <input type="checkbox" name="q" value="laptop">
+                            </div>
+
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Phone">Phone</div>
+                                <input type="checkbox" name="q" value="phone">
+                            </div>
+
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Tablet">Tablet</div>
+                                <input type="checkbox" name="q" value="tablet">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Watch">Watch</div>
+                                <input type="checkbox" name="q" value="watch">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Hybrid">Hybrid</div>
+                                <input type="checkbox" name="q" value="hybrid">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="System">System</div>
+                                <input type="checkbox" name="q" value="system">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="item">
+                        <div class="title">
+                            <a href="#" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i>
+                                Open</a>
+                            <a href="{% url 'category' %}" data-action="clear"> <i class="ion-ios-trash-outline"></i>
+                                Clear</a>
+                            <h1 class="h4">Screen</h1>
+                        </div>
+
+                        <div class="controls grid">
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="7 in">7 in</div>
+                                <input type="checkbox" name="q" value="7">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="10 in">10 in</div>
+                                <input type="checkbox" name="q" value="10">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="13 in">13 in</div>
+                                <input type="checkbox" name="q" value="13">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="15.5 in">15.5 in</div>
+                                <input type="checkbox" name="q" value="15.5">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="17.3 in">17.3 in</div>
+                                <input type="checkbox" name="q" value="17.3">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="19 in">19 in</div>
+                                <input type="checkbox" name="q" value="19">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="item">
+                        <div class="title">
+                            <a href="#" data-action="open" class="down"> <i class="ion-android-arrow-dropdown"></i>
+                                Open</a>
+                            <a href="{% url 'category' %}" data-action="clear"> <i class="ion-ios-trash-outline"></i>
+                                Clear</a>
+                            <h1 class="h4">Manufacturer</h1>
+                        </div>
+                        <div class="controls">
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Apple">Apple</div>
+                                <input type="checkbox" name="q" value="apple">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Asus">Asus</div>
+                                <input type="checkbox" name="q" value="asus">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Sumsong">Sumsong</div>
+                                <input type="checkbox" name="q" value="Sumsong">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Dell">Dell</div>
+                                <input type="checkbox" name="q" value="dell">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Xiaomi">Xiaomi</div>
+                                <input type="checkbox" name="q" value="xiaomi">
+                            </div>
+                            <div class="checkbox-group" data-status="inactive">
+                                <div class="checkbox"><i class="ion-android-done"></i></div>
+                                <div class="label" data-value="Rolex">Rolex</div>
+                                <input type="checkbox" name="q" value="rolex">
+                            </div>
+                        </div>
+                        <br>
+                        <button class="btn btn-facebook" type="submit">Apply Filters</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- /// -->
+            <div class="col-sm-9 products">
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-sm-6 col-md-4 product">
+                            <a href="#favorites" class="favorites" data-favorite="inactive"><i
+                                    class="ion-ios-heart-outline"></i></a>
+                            <a href="{{ product.get_absolute_url }}"><img src="{{ product.product_image.url }}"
+                                                                          alt="Picture"/></a>
+
+                            <div class="content">
+                                <h1 class="h4">{{ product.product_name }}</h1>
+                                <p class="price">${{ product.price }}</p>
+                                <label>{{ product.category }}</label>
+                                <a href="{{ product.get_absolute_url }}" class="btn btn-link">Details</a>
+                                {% if user.is_authenticated %}
+                                    <form action="{% url 'add-cart' product.id %}" method="post"> {% csrf_token %}
+                                    <button class="btn btn-primary btn-rounded btn-sm"><i class="ion-bag"></i> Add
+                                        to
+                                        cart
+                                    </button>
+                                {% else %}
+                                    <a href="{% url 'login' %}">
+                                        <button class="btn btn-primary btn-rounded btn-sm"><i class="ion-bag"></i>
+                                            Add
+                                            to
+                                            cart
+                                        </button>
+                                    </a>
+                                {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            {% if products.has_previous %}
+                                <a href="?page={{ products.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true"><i class="ion-ios-arrow-left"></i></span>
+                                </a>
+                            {% else %}
+                                <li class="disabled"><a href=""><i class="ion-ios-arrow-left"></i></a></li>
+                            {% endif %}
+                        </li>
+                        {% for page in products.paginator.page_range %}
+                            {% if products.number == page %}
+                                <li class="active"><a href="">{{ page }}</a></li>
+                            {% else %}
+                                <li><a href="?page={{ page }}">{{ page }}</a></li>
+
+                            {% endif %}
+                        {% endfor %}
+                        <li>
+                            {% if products.has_next %}
+                                <a href="?page={{ products.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true"><i class="ion-ios-arrow-right"></i></span>
+                                </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- /// -->
+        </div>
+
+    </div>
+    <br><br>
+{% endblock content %}
+

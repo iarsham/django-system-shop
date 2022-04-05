@@ -1,0 +1,99 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+
+    <hr class="offset-md">
+
+    <div class="box">
+        <div class="container">
+            <h1>Checkout order</h1>
+
+        </div>
+    </div>
+    <hr class="offset-md">
+    <form action="{% url 'checkout' %}" method="post"> {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="checkout">
+                                <div class="addresses box-select">
+                                    <h2> 1. Delevery address</h2>
+                                    <hr class="offset-sm">
+                                    <a href="#addaddress" type="button" data-toggle="collapse"
+                                       data-target="#collapseExample" aria-expanded="false"
+                                       aria-controls="collapseExample">
+                                        Add new address
+                                    </a>
+                                    <hr class="offset-sm">
+                                    <div class="collapse" id="collapseExample">
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <hr class="offset-sm">
+                                                <div class="row">
+                                                    {% for form in address_form %}
+                                                        <div class="col-sm-4">
+                                                            <p>{{ form.label }}</p>
+                                                            {{ form }}
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="offset-sm">
+                                    <hr>
+                                </div>
+                                <div class="payment box-select">
+                                    <h2> 2. Description </h2>
+                                    <hr class="offset-sm">
+                                    <textarea name="description" class="form-control"
+                                              placeholder="Please, type a description"
+                                              rows="5"></textarea>
+                                    <hr class="offset-sm">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-sm-8 col-md-4">
+                    <hr class="offset-sm visible-sm">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h2 class="no-margin">Summary</h2>
+                            <hr class="offset-md">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h3 class="no-margin">Total sum</h3>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        {% if not order %}
+                                            <h3 class="no-margin">${{ total }}</h3>
+                                        {% else %}
+                                            <h3 class="no-margin">$ 0</h3>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="offset-md">
+
+                            <button type="submit" class="btn btn-primary btn-lg justify"><i class="ion-compose"></i>&nbsp;&nbsp;
+                                Confirm
+                                order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr class="offset-lg">
+    <hr class="offset-lg">
+{% endblock content %}

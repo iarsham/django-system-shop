@@ -1,0 +1,143 @@
+{% load static %}
+<footer>
+    <div class="about">
+        <div class="container">
+            <div class="row">
+                <hr class="offset-md">
+
+                <div class="col-xs-6 col-sm-3">
+                    <div class="item">
+                        <i class="ion-ios-telephone-outline"></i>
+                        <h1>24/7 free <br> <span>support</span></h1>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="item">
+                        <i class="ion-ios-star-outline"></i>
+                        <h1>Low price <br> <span>guarantee</span></h1>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="item">
+                        <i class="ion-ios-gear-outline"></i>
+                        <h1> Manufacturer’s <br> <span>warranty</span></h1>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="item">
+                        <i class="ion-ios-loop"></i>
+                        <h1> Full refund <br> <span>guarantee</span></h1>
+                    </div>
+                </div>
+
+                <hr class="offset-md">
+            </div>
+        </div>
+    </div>
+
+    <div class="subscribe">
+        <div class="container align-center">
+            <hr class="offset-md">
+
+            <h1 class="h3 upp">Search for Products</h1>
+            <hr class="offset-sm">
+
+            <form action="{% url 'category' %}" method="get">
+                <div class="input-group">
+                    <input type="text" name="search" placeholder="What You Want?" class="form-control">
+                    <span class="input-group-btn">
+                  <button type="submit" class="btn btn-primary"> Search <i class="ion-android-send"></i> </button>
+                </span>
+                </div><!-- /input-group -->
+            </form>
+            <hr class="offset-lg">
+            <hr class="offset-md">
+
+            <div class="social">
+                <a href="#"><i class="ion-social-google"></i></a>
+                <a href="#" TARGET="_blank"><i
+                        class="ion-social-instagram-outline"></i></a>
+                <a href="#" TARGET="_blank"><i
+                        class="ion-social-linkedin-outline"></i></a>
+            </div>
+            <hr class="offset-md">
+            <hr class="offset-md">
+        </div>
+    </div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal-SignIn" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i
+                        class="ion-android-close"></i></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4 class="modal-title">Join Free</h4>
+                            <br>
+
+                            <form class="join" action="index.php" method="post">
+                                <input type="email" name="email" value="" placeholder="E-mail" required=""
+                                       class="form-control"/>
+                                <br>
+                                <input type="password" name="password" value="" placeholder="Password" required=""
+                                       class="form-control"/>
+                                <br>
+
+                                <button type="submit" class="btn btn-primary btn-sm">Join</button>
+                                <a href="#">Terms ></a>
+
+                                <br><br>
+                                <p>
+                                    By creating an account you will be able to shop faster, be up to date on an order's
+                                    status, and keep track of the orders you have previously made.
+                                </p>
+                            </form>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4 class="modal-title">Sign In</h4>
+                            <br>
+
+                            <form class="signin" action="index.php" method="post">
+                                <input type="email" name="email" value="" placeholder="E-mail" required=""
+                                       class="form-control"/>
+                                <br>
+                                <input type="password" name="password" value="" placeholder="Password" required=""
+                                       class="form-control"/>
+                                <br>
+
+                                <button type="submit" class="btn btn-primary btn-sm">Sign In</button>
+                                <a href="#forgin-password" data-action="Forgot-Password">Password recovery ></a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="Modal-Gallery" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i
+                        class="ion-android-close"></i></span></button>
+                <h4 class="modal-title">Title</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
