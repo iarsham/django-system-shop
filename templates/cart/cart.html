@@ -1,7 +1,9 @@
 {% extends '_base.html' %}
 {% load static %}
 {% block content %}
+
     <hr class="offset-md">
+
     <div class="box">
         <div class="container">
             <h1>Shopping Cart</h1>
@@ -9,6 +11,7 @@
         </div>
     </div>
     <hr class="offset-md">
+
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -16,66 +19,58 @@
                     <div class="panel-body">
                         <div class="checkout-cart">
                             <div class="content">
-                                {% if items and user.is_authenticated and not order %}
-                                    {% for item in items %}
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object"
-                                                         src="{{ item.cart_product.product_image.url }}"
-                                                         alt="Cart Item Image"/>
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h2 class="h4 media-heading"></h2>
-                                                <label>{{ item.cart_product.product_name }}</label>
-                                                <p class="price">$ {{ item.cart_product.price }}</p>
-                                            </div>
-                                            <div class="controls">
-                                                <div class="input-group">
-                                <span class="input-group-btn">
-                                    <form action="{% url 'remove-cart' item.cart_product.id %}">{% csrf_token %}
-                                  <button class="btn btn-default btn-sm" type="submit" data-action="minus"><i
-                                          class="ion-minus-round"></i></button>
-                                        </form>
-                                </span>
-                                                    <input type="text" class="form-control input-sm"
-                                                           placeholder="{{ item.quantity }}"
-                                                           value=""
-                                                           readonly="">
-
-                                                    <span class="input-group-btn">
-                                                    <form action="{% url 'add-cart' item.cart_product.id %}"
+                                {% if cart %}
+                                    {% for item in cart %}
+                                        {% with product=item.product %}
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="#">
+                                                        <img class="media-object"
+                                                             src="{{ product.product_image.url }}"
+                                                             alt="{{ product.product_name }}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h2 class="h4 media-heading">{{ product.product_name }}</h2>
+                                                    <label>{{ product.category }}</label>
+                                                    <p class="price">$ {{ product.price }}</p>
+                                                    <form action="{% url 'remove-cart' product.id %}"
                                                           method="post">{% csrf_token %}
-                                  <button class="btn btn-default btn-sm" type="submit" data-action="plus"><i
-                                          class="ion-plus-round"></i></button>
-                                                        </form>
+                                                        <button style="border: none; background-color:white;color: #00a1b4;"
+                                                                type="submit"><i class="ion-trash-b"></i>
+                                                            Remove
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="controls">
+                                                    <div class="input-group">
+
+                                <span class="input-group">
+                                    <form action="{% url 'add-cart' product.id %}" method="post"> {% csrf_token %}
+                                    {{ item.update_quantity_form.quantity }}
+                                   {{ item.update_quantity_form.update }}
+                                     <button class="btn btn-default btn-sm" type="submit"
+                                             data-action="plus">Update</button>
+                                        </form>
 
                                 </span>
-                                                </div><!-- /input-group -->
-                                                <form action="{% url 'remove-cart' item.cart_product.id %}"
-                                                      method="post">{% csrf_token %}
-                                                    <button style="background-color: white; border: none; color: #00a1b4"
-                                                            type="submit">
-                                                        <i class="ion-trash-b"></i> Remove
-                                                    </button>
-                                                </form>
+                                                        <input type="text" class="form-control input-sm"
+                                                               placeholder="Qty" value="{{ item.num }}"
+                                                               readonly="">
+                                                        <span class="input-group-btn">
+                                </span>
+
+                                                    </div><!-- /input-group -->
+
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% endwith %}
                                     {% endfor %}
-                                {% elif not items or order and user.is_authenticated %}
+                                {% else %}
                                     <div class="media-left">
                                         <div style="text-align: center" class="media-body">
                                             <h4 class="text-info">Cart Is Empty Please Select a Product</h4> <br>
                                             <a class="btn btn-primary" href="{% url 'category' %}">Continue Shopping</a>
-                                        </div>
-                                    </div>
-                                {% else %}
-
-                                    <div class="media-left">
-                                        <div style="text-align: center" class="media-body">
-                                            <h4 class="text-info">Please Sign in To Add Cart !</h4> <br>
-                                            <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
                                         </div>
                                     </div>
                                 {% endif %}
@@ -86,34 +81,74 @@
             </div>
             <div class="col-sm-8 col-md-4">
                 <hr class="offset-md visible-sm">
-                <div class="panel panel-default"><br>
+                <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <h3 class="no-margin">Total Price</h3>
-                                </div>
-                                <div class="col-xs-6">
-                                    {% if total and not order %}
-                                        <h3 class="no-margin">{{ total }} $</h3>
-                                    {% else %}
-                                        <h3 class="no-margin">0 $</h3>
-                                    {% endif %}
-
+                        <h2 class="no-margin">Summary</h2>
+                        <hr class="offset-md">
+                        {% if cart %}
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <p>Subtotal {{ cart.get_total_items }} items</p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <p><b></b></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <hr class="offset-md">
+                            <hr>
 
-                        <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg justify"><i
-                                class="ion-android-checkbox-outline"></i>Checkout order</a>
-                        <hr class="offset-md">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h3 class="no-margin">Total sum</h3>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h3 class="no-margin">$ {{ cart.get_total_price }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="offset-md">
+                            <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg justify"><i
+                                    class="ion-android-checkbox-outline"></i>&nbsp;&nbsp; Checkout order</a>
+                            <hr class="offset-md">
+                        {% else %}
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <p>Subtotal (0 items)</p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <p><b>0</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h3 class="no-margin">Total sum</h3>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <h3 class="no-margin">$ 0</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="offset-md">
+
+                            <a href="{% url 'cart-view' %}" class="btn btn-primary btn-lg justify "><i
+                                    class="ion-android-checkbox-outline"></i>&nbsp;&nbsp; Checkout order</a>
+                            <hr class="offset-md">
+                        {% endif %}
+
+
                         <p>Pay your order in the most convenient way</p>
                         <div class="payment-icons">
-                            <img src="{% static 'assets/img/payments/icon-paypal.svg' %}" alt="paypal">
-                            <img src="{% static 'assets/img/payments/icon-visa.svg' %}" alt="visa">
-                            <img src="{% static 'assets/img/payments/icon-mc.svg' %}" alt="mc">
-                            <img src="{% static 'assets/img/payments/icon-discover.svg' %}" alt="discover">
+                            <img src="{% static './assets/img/payments/icon-paypal.svg' %}" alt="paypal">
+                            <img src="{% static './assets/img/payments/icon-visa.svg' %}" alt="visa">
+                            <img src="{% static './assets/img/payments/icon-mc.svg' %}" alt="mc">
+                            <img src="{% static './assets/img/payments/icon-discover.svg' %}" alt="discover">
                         </div>
                     </div>
                 </div>
@@ -123,4 +158,5 @@
 
     <hr class="offset-lg">
     <hr class="offset-lg">
+
 {% endblock content %}
