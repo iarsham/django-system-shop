@@ -14,22 +14,24 @@ ALLOWED_HOSTS = []
 # User Model
 AUTH_USER_MODEL = 'account.CustomUser'
 
-# Application definition
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Local Apps
+]
+THIRD_PARTY_APPS = [
+    'debug_toolbar',
+]
+LOCAL_APPS = [
     'account.apps.AccountConfig',
     'store.apps.StoreConfig',
     'cart.apps.CartConfig',
     'order.apps.OrderConfig',
-    # 3rd Package
-    'debug_toolbar',
 ]
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +59,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # Custom Processors
+                # 'cart.context_processors._id_cart',
             ],
         },
     },
@@ -94,7 +96,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
@@ -125,4 +126,4 @@ EMAIL_HOST_USER = 'aqaarsham@gmail.com'
 EMAIL_HOST_PASSWORD = 'mwpvhiftzlyujbmk'
 EMAIL_USE_TLS = True
 
-CART_SESSION_ID = 'cart'
+CART_SESSION_ID = 'cart-id'
