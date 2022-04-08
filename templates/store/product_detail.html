@@ -53,6 +53,8 @@
                     <br><br>
                     {% if user.is_authenticated %}
                         <form action="{% url 'add-cart' project_detail.id %}" method="post"> {% csrf_token %}
+
+                            {{ cart_form }}&nbsp;&nbsp;
                             <button class="btn btn-primary btn-rounded"><i class="ion-bag"></i> Add to cart</button>
                         </form>
                     {% else %}

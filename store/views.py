@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Product, Comment
 from .utils import paginate, run_filter
+from cart.forms import AddCartForm
 
 
 def category(request):
@@ -11,6 +12,7 @@ def category(request):
 
     context = {
         'products': query,
+        'cart_form': AddCartForm()
     }
     return render(request, 'store/category.html', context)
 
@@ -30,5 +32,6 @@ def product_detail(request, pk):
     context = {
         'project_detail': project_detail,
         'product_comments': product_comments,
+        'cart_form': AddCartForm()
     }
     return render(request, 'store/product_detail.html', context)
