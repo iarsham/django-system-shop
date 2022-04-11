@@ -18,7 +18,6 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('order/', include('order.urls')),
     # 3rd Package
-    path('__debug__/', include('debug_toolbar.urls')),
 
 ]
 
