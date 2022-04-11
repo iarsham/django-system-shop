@@ -9,5 +9,5 @@ urlpatterns = [
     # Password Reset
     path('reset_done/', forget_password, name='reset_mail'),
     path('reset_validate/<uidb64>/<token>/', resetpassword_validate, name='reset_validate'),
-    path('password_reset', password_reset, name='password_reset')
+    path('password_reset/', password_reset, name='password_reset')
 ]
