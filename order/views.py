@@ -1,38 +1,40 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from cart.models import CartItem
-from .models import Orders
+from .models import Address, Order
 from .forms import OrderForm
+from cart.carts import Cart
 from django.contrib import messages
 
 
 @login_required(login_url='login')
 def add_order(request):
-    all_items = CartItem.objects.filter(cart_user=request.user)
-    total = 0
-    for i in all_items:
-        total += (i.cart_product.price * i.quantity)
-    if request.POST:
+    cart = Cart(request)
+    if request.method == "POST":
         form = OrderForm(request.POST)
+        description = request.POST['description']
         if form.is_valid():
             info = form.cleaned_data
-            description = request.POST['description']
-            Orders.objects.create(
+            address_info = Address.objects.create(
                 user=request.user,
-                address=info['address'],
-                city=info['city'],
+                address_user=info['address_user'],
                 country=info['country'],
                 postal_code=info['postal_code'],
-                description=description
+                description=description,
             )
+            for item in cart:
+                Order.objects.create(
+                    order_info=address_info,
+                    product=item['product'],
+                    order_price=item['price'],
+                    quantity=item['quantity']
+                )
+            cart.clear()
 
-            messages.success(request, 'Your order has been processed')
-            return redirect('home')
-        else:
-            messages.warning(request, "Error happened!")
+        messages.success(request, 'Your order has been processed')
+        return redirect('home')
+
     context = {
         'address_form': OrderForm(),
-        'total': total,
     }
     return render(request, 'cart/checkout.html', context)
 
