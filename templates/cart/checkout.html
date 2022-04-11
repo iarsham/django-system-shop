@@ -69,15 +69,19 @@
                             <h2 class="no-margin">Summary</h2>
                             <hr class="offset-md">
                             <div class="container-fluid">
+                            <div class="form"></div>
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <h3 class="no-margin">Total sum</h3>
+                                        <h3 class="no-margin">Total Price</h3> <br>
+                                        <h3 class="no-margin">Order Sum</h3>
                                     </div>
                                     <div class="col-xs-6">
-                                        {% if not order %}
-                                            <h3 class="no-margin">${{ total }}</h3>
+                                        {% if cart %}
+                                            <h3 class="no-margin">$ {{ cart.get_total_price }}</h3> <br>
+                                            <h3 class="no-margin">{{ cart.get_total_item }}</h3>
                                         {% else %}
-                                            <h3 class="no-margin">$ 0</h3>
+                                            <h3 class="no-margin">$ 0</h3> <br>
+                                            <h3 class="no-margin"> 0</h3>
                                         {% endif %}
                                     </div>
                                 </div>

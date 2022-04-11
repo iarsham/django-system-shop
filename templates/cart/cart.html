@@ -89,7 +89,7 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <p>Subtotal {{ cart.get_total_items }} items</p>
+                                        <p>Subtotal {{ cart.get_total_item }} items</p>
                                     </div>
                                     <div class="col-xs-6">
                                         <p><b></b></p>
@@ -111,6 +111,7 @@
                             <hr class="offset-md">
                             <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg justify"><i
                                     class="ion-android-checkbox-outline"></i>&nbsp;&nbsp; Checkout order</a>
+
                             <hr class="offset-md">
                         {% else %}
                             <div class="container-fluid">

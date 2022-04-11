@@ -22,7 +22,12 @@
                     <a href="./catalog/" class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                        {% if cart %}
+                            <li><a href="{% url 'checkout' %}">Checkout</a></li>
+                        {% else %}
+                            <li><a href="{% url 'category' %}">Checkout</a></li>
+                        {% endif %}
+
                         <li><a href="{% url 'contact' %}">Contacts</a></li>
                     </ul>
                 </li>
