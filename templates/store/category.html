@@ -164,8 +164,10 @@
                         <div class="col-sm-6 col-md-4 product">
                             <a href="#favorites" class="favorites" data-favorite="inactive"><i
                                     class="ion-ios-heart-outline"></i></a>
+                        {% if product.product_image %}
                             <a href="{{ product.get_absolute_url }}"><img src="{{ product.product_image.url }}"
                                                                           alt="Picture"/></a>
+                        {% endif %}
 
                             <div class="content">
                                 <h1 class="h4">{{ product.product_name }}</h1>
