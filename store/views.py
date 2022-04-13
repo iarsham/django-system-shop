@@ -5,7 +5,8 @@ from cart.forms import AddCartForm
 
 
 def category(request):
-    if 'q' or 'search' or 'sort' in request.GET:
+    q = request.GET.get('q') or request.GET.get('sort') or request.GET.get('search')
+    if q:
         query = run_filter(request)
     else:
         query = paginate(request)
