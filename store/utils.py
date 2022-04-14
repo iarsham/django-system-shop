@@ -9,8 +9,7 @@ def run_filter(request):
         query = Product.objects.filter(
             Q(product_name__icontains=search) |
             Q(product_brand__icontains=search)
-        ).distinct()
-        return query
+        )
 
     elif 'q' in request.GET:
         q = request.GET.get('q')
@@ -18,9 +17,7 @@ def run_filter(request):
             Q(category__slug__icontains=q) |
             Q(screen__icontains=q) |
             Q(product_brand__icontains=q)
-        ).distinct()
-        return query
-
+        )
     else:
         s = request.GET.get('sort')
         if s == 'high':
@@ -29,7 +26,7 @@ def run_filter(request):
             query = Product.objects.order_by('-added_date')
         else:
             query = Product.objects.order_by('price')
-        return query
+    return query.distinct()
 
 
 def paginate(request):
