@@ -11,9 +11,11 @@
                         <!-- <button class="btn btn-control"></button> -->
 
                         <div class="items">
-                            <div class="item active" data-marker="1">
-                                <img src="{{ project_detail.product_image.url }}" alt="ChromeBook 11"/>
-                            </div>
+                            {% if project_detail.product_image %}
+                                <div class="item active" data-marker="1">
+                                    <img src="{{ project_detail.product_image.url }}" alt="ChromeBook 11"/>
+                                </div>
+                            {% endif %}
                             {% if project_detail.product_image2 and project_detail.product_image3 %}
                                 <div class="item" data-marker="2">
                                     <img src="{{ project_detail.product_image2.url }}" alt="ChromeBook 11"/>
@@ -25,9 +27,11 @@
                         </div>
 
                         <ul class="markers">
-                            <li data-marker="1" class="active"><img src="{{ project_detail.product_image.url }}"
-                                                                    alt="Background"/>
-                            </li>
+                            {% if project_detail.product_image %}
+                                <li data-marker="1" class="active"><img src="{{ project_detail.product_image.url }}"
+                                                                        alt="Background"/>
+                                </li>
+                            {% endif %}
                             {% if project_detail.product_image2 and project_detail.product_image3 %}
                                 <li data-marker="2"><img src="{{ project_detail.product_image2.url }}"
                                                          alt="Background"/></li>
