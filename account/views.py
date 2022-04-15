@@ -53,17 +53,12 @@ def auth_login(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
-        user1 = CustomUser.objects.get(username=username)
         if user is not None:
             login(request, user)
             messages.success(request, 'Login is Successfuly')
             return redirect('home')
-        elif not user1.is_active:
-            print(user1.is_active)
-            messages.warning(request, 'Please check your inbox and active your account')
-            return redirect('login')
         else:
-            messages.warning(request, 'Username Or Password Is Not Correct!')
+            messages.warning(request, 'Username / Password Is Not Correct! Or Check inbox and active your account ')
             return redirect('login')
     return render(request, 'registration/login.html')
 

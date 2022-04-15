@@ -36,6 +36,5 @@ class RegisterForm(forms.ModelForm):
         password = info.get('password')
         confirm_password = info.get('confirm_password')
         if password != confirm_password:
-            print('Password is Not Same ')
             raise forms.ValidationError("Password is Not Same !")
         return info
