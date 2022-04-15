@@ -1,9 +1,8 @@
 <h1 align=center>E-Commerce Website with Django</h1>
 
+##  [arsham.pythonanywhere.com ](https://arsham.pythonanywhere.com/)
 
-## ✨ [Live Link - ](https://arsham.pythonanywhere.com/)
-
-### How to Run 🏃‍♀️
+### How to Run 
 
 ```shell
 1 git clone https://github.com/iarsham/django-system-shop.git
@@ -19,7 +18,6 @@
 
 ![Django Shop 1](https://user-images.githubusercontent.com/87933412/163625797-0e3ce8ff-eef5-46b7-a4b0-8e33025f072d.png)
 ![Django Shop 2](https://user-images.githubusercontent.com/87933412/163626203-24fa8094-f9f4-4a4d-a648-0f54f4cbeb37.png)
-
 
 ### 🚀 Project Features
 
