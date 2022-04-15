@@ -10,6 +10,7 @@
 3 python -m venv venv
 4 source venv/bin/activate
 5 pip install -r requirements.txt 
+6 python manage.py migrate
 6 python manage.py runserver
 
 ```
